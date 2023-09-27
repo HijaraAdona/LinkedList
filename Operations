@@ -35,6 +35,11 @@ public class Linked_List {
       //point first to new first node
       head = lk;
    }
+   static void insertafternode(node list, int data) {
+      node lk = new node(data);
+      lk.next = list.next;
+      list.next = lk;
+   }
    static void deleteatbegin() {
       head = head.next;
    }
@@ -113,6 +118,12 @@ public class Linked_List {
       printList();
       deletenode(33);
       System.out.println("\nLinked List after deletion of a specific node: ");
+
+      // print list
+      printList();
+      insertafternode(head.next, 25);
+      insertafternode(head.next.next, 15);
+      System.out.println("Linked List: ");
 
       // print list
       printList();
