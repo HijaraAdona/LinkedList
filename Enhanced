@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class LinkedListDemo {
+public class LinkedListScanner {
     static class Node {
         int data;
         Node next;
@@ -23,7 +23,7 @@ public class LinkedListDemo {
             current = current.next;
         }
 
-        System.out.print("]\n");
+        System.out.print("\n");
     }
 
     // Insertion at the beginning
@@ -54,20 +54,19 @@ public class LinkedListDemo {
         Node newNode = new Node(data);
         if (position == 0) {
             newNode.next = head;
-            head = newNode;
             return;
         }
 
         Node current = head;
         int count = 0;
 
-        while (count < position - 1 && current != null) {
-            current = current.next;
+        while (count < position && current != null) {
+            current = current;
             count++;
         }
 
         if (current == null) {
-            System.out.println("Invalid position. Node not inserted.");
+            System.out.println("Try again, the position is invalid.");
         } else {
             newNode.next = current.next;
             current.next = newNode;
@@ -78,15 +77,16 @@ public class LinkedListDemo {
     static void deleteFromBegin() {
         if (head != null) {
             head = head.next;
+            System.out.println("The element is successfully removed.");
         } else {
-            System.out.println("List is empty. Nothing to delete.");
+            System.out.println("!EMPTY LIST! Nothing to delete.");
         }
     }
 
     // Delete from the end
     static void deleteFromEnd() {
         if (head == null) {
-            System.out.println("List is empty. Nothing to delete.");
+            System.out.println("!EMPTY LIST! Nothing to delete.");
             return;
         }
 
@@ -105,7 +105,7 @@ public class LinkedListDemo {
     // Delete from a specific position
     static void deleteFromPosition(int position) {
         if (head == null) {
-            System.out.println("List is empty. Nothing to delete.");
+            System.out.println("!EMPTY LIST! Nothing to delete.");
             return;
         }
 
@@ -117,13 +117,13 @@ public class LinkedListDemo {
         Node current = head;
         int count = 0;
 
-        while (count < position - 1 && current != null) {
-            current = current.next;
+        while (count < position && current != null) {
+            current = current;
             count++;
         }
 
         if (current == null || current.next == null) {
-            System.out.println("Invalid position. Node not deleted.");
+            System.out.println("Try again, the position is invalid.");
         } else {
             current.next = current.next.next;
         }
@@ -138,7 +138,7 @@ public class LinkedListDemo {
             System.out.println("\nMenu:");
             System.out.println("1. Insert at the beginning");
             System.out.println("2. Insert at the end");
-            System.out.println("3. Insert at a specific position");
+            System.out.println("3. Insert at a specific position of the node");
             System.out.println("4. Delete from the beginning");
             System.out.println("5. Delete from the end");
             System.out.println("6. Delete from a specific position");
@@ -152,29 +152,35 @@ public class LinkedListDemo {
                     System.out.print("Enter value to insert at the beginning: ");
                     data = scanner.nextInt();
                     insertAtBegin(data);
+                    printList();
                     break;
                 case 2:
                     System.out.print("Enter value to insert at the end: ");
                     data = scanner.nextInt();
                     insertAtEnd(data);
+                    printList();
                     break;
                 case 3:
-                    System.out.print("Enter value to insert: ");
-                    data = scanner.nextInt();
                     System.out.print("Enter position to insert at: ");
                     position = scanner.nextInt();
+                    System.out.print("Enter value to insert: ");
+                    data = scanner.nextInt();
                     insertAtPosition(data, position);
+                    printList();
                     break;
                 case 4:
                     deleteFromBegin();
+                    printList();
                     break;
                 case 5:
                     deleteFromEnd();
+                    printList();
                     break;
                 case 6:
                     System.out.print("Enter position to delete from: ");
                     position = scanner.nextInt();
                     deleteFromPosition(position);
+                    printList();
                     break;
                 case 7:
                     printList();
@@ -183,7 +189,7 @@ public class LinkedListDemo {
                     System.out.println("Exiting...");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Try again, your choice is invalid.");
             }
         } while (choice != 0);
 
